@@ -19,7 +19,7 @@ jobs:
 
     - name: Clone kernel source
       run: | 
-        git clone https://github.com/TelegramAt25/niigo_kernel_xiaomi_blossom -b main kernel_src
+        gh repo clone TelegramAt25/niigo_kernel_xiaomi_blossom
 
 
 
