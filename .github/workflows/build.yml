@@ -1,0 +1,45 @@
+name: Build ApexOC Kernel
+
+on:
+  workflow_dispatch:  # Manual trigger from GitHub UI
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v4
+
+    - name: Set up environment
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y bc bison flex libssl-dev make gcc clang git \
+        libncurses5-dev libncursesw5-dev python-is-python3 build-essential
+
+    - name: Clone kernel source
+      run: |
+        git clone https://github.com/TelegramAt25/niigo_kernel_xiaomi_blossom -b blossom-14 kernel_src
+
+    - name: Build kernel
+      run: |
+        cd kernel_src
+        export ARCH=arm64
+        export SUBARCH=arm64
+        export CROSS_COMPILE=aarch64-linux-gnu-
+        make clean && make mrproper
+        make blossom_defconfig
+        make -j$(nproc)
+
+    - name: Package with AnyKernel3
+      run: |
+        git clone https://github.com/osm0sis/AnyKernel3 AnyKernel
+        cp kernel_src/out/arch/arm64/boot/Image.gz AnyKernel/
+        cd AnyKernel
+        zip -r9 ../ApexOC-Kernel_Redmi9C.zip ./*
+
+    - name: Upload kernel ZIP
+      uses: actions/upload-artifact@v3
+      with:
+        name: ApexOC-Kernel_Redmi9C
+        path: ApexOC-Kernel_Redmi9C.zip
