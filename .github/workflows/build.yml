@@ -39,7 +39,7 @@ jobs:
         zip -r9 ../ApexOC-Kernel_Redmi9C.zip ./*
 
     - name: Upload kernel ZIP
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ApexOC-Kernel_Redmi9C
         path: ApexOC-Kernel_Redmi9C.zip
