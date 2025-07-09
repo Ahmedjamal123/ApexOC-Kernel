@@ -19,7 +19,8 @@ jobs:
 
     - name: Clone kernel source
       run: | 
-        git clone https://github.com/TelegramAt25/niigo_kernel_xiaomi_blossom -b blossom kernel_src
+        git clone https://github.com/TelegramAt25/niigo_kernel_xiaomi_blossom -b main kernel_src
+
 
 
     - name: Build kernel
