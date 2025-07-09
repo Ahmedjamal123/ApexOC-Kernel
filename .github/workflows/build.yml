@@ -17,11 +17,9 @@ jobs:
         sudo apt-get install -y bc bison flex libssl-dev make gcc clang git \
         libncurses5-dev libncursesw5-dev python-is-python3 build-essential
 
-         - name: Clone kernel source
-          run: |
-              git clone https://github.com/TelegramAt25/niigo_kernel_xiaomi_blossom.git -b main kernel_src
-
-
+    - name: Clone kernel source
+      run: |
+        git clone https://github.com/TelegramAt25/niigo_kernel_xiaomi_blossom.git -b main kernel_src
 
     - name: Build kernel
       run: |
