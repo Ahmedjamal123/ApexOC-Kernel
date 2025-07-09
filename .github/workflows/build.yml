@@ -18,8 +18,9 @@ jobs:
         libncurses5-dev libncursesw5-dev python-is-python3 build-essential
 
     - name: Clone kernel source
-      run: |
-        git clone https://github.com/TelegramAt25/niigo_kernel_xiaomi_blossom -b blossom-14 kernel_src
+      run: | 
+        git clone https://github.com/TelegramAt25/niigo_kernel_xiaomi_blossom -b blossom kernel_src
+
 
     - name: Build kernel
       run: |
